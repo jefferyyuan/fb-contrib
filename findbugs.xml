@@ -1,0 +1,19 @@
+<FindbugsPlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="findbugsplugin.xsd"
+	pluginid="org.codeexample.jefferyyuan.fb-contrib-jy" provider="Jeffery Yuan"
+	website="http://jefferyyuan.blogspot.com">
+
+	<Detector
+		class="org.codeexample.jefferyyuan.fb.contrib.NotClosedRequestDetector"
+		reports="NOT_CLOSE_SOLR_REQUEST" />
+	<BugPattern type="NOT_CLOSE_SOLR_REQUEST" abbrev="NOT_CLOSE_SOLR_REQUEST"
+		category="CORRECTNESS" />
+
+
+	<Detector
+		class="org.codeexample.jefferyyuan.fb.contrib.UnDecrefRefCountedSearcherDetector"
+		reports="UN_DECREF_REFCOUNTED_SEARCHER" />
+	<BugPattern type="UN_DECREF_REFCOUNTED_SEARCHER" abbrev="UN_DECREF_REFCOUNTED_SEARCHER"
+		category="CORRECTNESS" />
+
+</FindbugsPlugin>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="messagecollection.xsd">
+
+	<Plugin>
+		<ShortDescription>FindBugs Plugin by Jeffer Yuan</ShortDescription>
+		<Details>Provides detector to find unclosed Solr Request and un-decref
+			Solr searcher.</Details>
+	</Plugin>
+
+	<Detector
+		class="org.codeexample.jefferyyuan.fb.contrib.NotClosedRequestDetector">
+		<Details>
+			Provides detector to find unclosed Solr Request.
+		</Details>
+
+	</Detector>
+
+	<BugPattern type="NOT_CLOSE_SOLR_REQUEST">
+		<ShortDescription>Forget to close Solr Request.</ShortDescription>
+		<LongDescription>Forget to close Solr Request.
+		</LongDescription>
+		<Details>
+			<![CDATA[
+			<p>Required by Solr: check Javadoc of org.apache.solr.request.SolrQueryRequest.close(): This method should be called when all uses of this request are finished, so that resources can be freed.</p>
+			]]>
+		</Details>
+	</BugPattern>
+
+	<BugCode abbrev="NOT_CLOSE_SOLR_REQUEST">NOT_CLOSE_SOLR_REQUEST</BugCode>
+
+
+	<Detector
+		class="org.codeexample.jefferyyuan.fb.contrib.UnDecrefRefCountedSearcherDetector">
+		<Details>
+			Provides detector to find un-decref Solr searcher.
+		</Details>
+
+	</Detector>
+
+	<BugPattern type="UN_DECREF_REFCOUNTED_SEARCHER">
+		<ShortDescription>Forget to un-decref Solr searcher.
+		</ShortDescription>
+		<LongDescription>Forget to un-decref Solr searcher.
+		</LongDescription>
+		<Details>
+			<![CDATA[
+			<p>Required by Solr: check Javadoc of org.apache.solr.core.SolrCore.getSearcher(): It <b>must</b> be decremented when no longer needed. <br>
+			Javadoc of org.apache.solr.core.SolrCore.getNewestSearcher(boolean): It <b>must</b> be decremented when no longer needed.
+			</p>
+			]]>
+		</Details>
+	</BugPattern>
+
+	<BugCode abbrev="UN_DECREF_REFCOUNTED_SEARCHER">UN_DECREF_REFCOUNTED_SEARCHER</BugCode>
+</MessageCollection>
